@@ -21,6 +21,7 @@
                 </div>
                 <div class="card-body">
                     <form action="#" method="post">
+                    <input type="hidden" name="role" value="customer">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -59,8 +60,9 @@
        $username=$_REQUEST['username'];
        $email=$_REQUEST['email'];
        $password=$_REQUEST['password'];
+       $role=$_REQUEST['role'];
         // insert
-        $res=$user_model->insert($username,$email,$password);
+        $res=$user_model->insert($username,$email,$password,$role);
         if ($res) {
             echo "<script>
                 alert('Registration Successfull');
@@ -72,6 +74,5 @@
             </script>";
         }
         
-
    } 
 ?>

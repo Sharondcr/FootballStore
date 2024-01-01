@@ -27,7 +27,7 @@
             <img src="pics/nike 2.jpg" class="d-block w-100 image" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>NIKE AIR SUPERFLY VII</h5>
-              <p>So fast,that you were never there there.</p>
+              <p>So fast,that you were never there.</p>
             </div>
           </div>
           <div class="carousel-item">

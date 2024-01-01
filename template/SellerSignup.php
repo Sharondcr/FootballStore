@@ -20,37 +20,38 @@
                 </div>
                 <div class="card-body">                   
                     <form action="#" method="post">
+                    <input type="hidden" name="role" value="seller">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Seller Name">
+                            <input type="text" class="form-control" name="sellername" placeholder="Seller Name">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email">
                         </div>
                         <!-- Additional seller-specific fields -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-store"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Store Name">
+                            <input type="text" class="form-control" name="storename" placeholder="Store Name">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Payment Method">
+                            <input type="text" class="form-control" name="paymentmode" placeholder="Payment Method">
                         </div>
                         <!-- Password field -->
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Create Password">
+                            <input type="password" class="form-control" name="password" placeholder="Create Password">
                         </div>
                         <!-- End of additional fields -->
                         <div class="form-group">
@@ -63,3 +64,33 @@
     </div>
 </body>
 </html>
+
+<?php 
+
+   // Request
+   if ($_SERVER['REQUEST_METHOD']=="POST") {
+    // Add user model
+        include('../model/user.php');
+        $user_model=new User();
+       $sellername=$_REQUEST['sellername'];
+       $email=$_REQUEST['email'];
+       $storename=$_REQUEST['storename'];
+       $paymentmode=$_REQUEST['paymentmode'];
+       $password=$_REQUEST['password'];
+       $role=$_REQUEST['role'];
+        // insert
+        $res=$user_model->insertSeller($sellername,$email,$storename,$paymentmode,$password,$role);
+        if ($res) {
+            echo "<script>
+                alert('Registration Successfull');
+                window.location.href='./login.php'
+            </script>";
+        } else {
+            echo "<script>
+                alert('Registration failed');
+            </script>";
+        }
+        
+
+   } 
+?>

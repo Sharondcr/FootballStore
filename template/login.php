@@ -31,14 +31,14 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<input type="text" class="form-control" name="username" placeholder="username">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<input type="password" class="form-control" name="password" placeholder="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -62,3 +62,18 @@
 </div>
 </body>
 </html>
+
+<?php 
+  // Request
+  if ($_SERVER['REQUEST_METHOD']=="POST") {
+    // Add user model
+        include('../model/auth.php');
+        include('../database/db.php');
+        $auth_model=new auth(new DB_CON());
+
+       $username=$_REQUEST['username'];
+       $password=$_REQUEST['password'];
+        // insert
+        $res=$auth_model->login($username,$password);
+  }
+?>
